@@ -96,13 +96,12 @@ function rem100(){
 }
 //Get Releases
 function getReleases(){
-  var title = [], date = [], platform = [];
-  var titleD = [], dateD = [], platform = [];
-  var title1 = [], date1 = [], platform1 = [];
+  var title = [], platform = [];
+  var titleD = [], platform = [];
+  var title1 = [], platform1 = [];
   var start = document.getElementById('startYear').value + '-' + document.getElementById('startMonth').value + '-' + document.getElementById('startDate').value;
   var offset = document.getElementById('offset').value;
-  var t1 = `<tr><td class='releaseList'><span id='date'>`;
-  var t2 = ` || </span><span id='name'>`;
+  var t1 = `<tr><td class='releaseList'><span id='name'>`;
   var t4 = `</span></td></tr><tr><td colspan='2'>=========================================================</td></tr>`;
 
   $.ajax({
@@ -120,23 +119,21 @@ function getReleases(){
         for (i = 0; i < max; i ++ ){
           if (data.results[i].region == 'North America'){
             if (document.getElementById('pc').checked == true){
-              var tempTitle = data.results[i].name + ` (` + data.results[i].platform + `)`;
-              if (title1.includes(tempTitle.toString())){
+              var tempTitle = `<a href='https://www.google.com/search?q=`+ data.results[i].name + ` (` + data.results[i].platform + `)' target='_blank'>` + data.results[i].name + ` (` + data.results[i].platform + `)` + `</a>`;
+              if (title1.includes(tempTitle)){
                 //Do nothing
               } else {
-                title1[i] = data.results[i].name + ` (` + data.results[i].platform + `)`;
-                date1[i] = data.results[i].release_date.substring(5,10) + '-' + data.results[i].release_date.substring(0,4);
+                title1[i] = tempTitle;
               }
             } else {
               if (data.results[i].platform != 'PC'){
                 if (data.results[i].platform != 'Macintosh'){
                   if (data.results[i].platform != 'Linux'){
-                    var tempTitle = data.results[i].name + ` (` + data.results[i].platform + `)`;
-                    if (title1.includes(tempTitle.toString())){
+                    var tempTitle = `<a href='https://www.google.com/search?q=`+ data.results[i].name + ` (` + data.results[i].platform + `)' target='_blank'>` + data.results[i].name + ` (` + data.results[i].platform + `)` + `</a>`;
+                    if (title1.includes(tempTitle)){
                       //Do nothing
                     } else {
-                      title1[i] = data.results[i].name + ` (` + data.results[i].platform + `)`;
-                      date1[i] = data.results[i].release_date.substring(5,10) + '-' + data.results[i].release_date.substring(0,4);
+                      title1[i] = tempTitle;
                     }
                   }
                 }
@@ -148,23 +145,21 @@ function getReleases(){
         for (i = 0; i < 100; i ++ ){
           if (data.results[i].region == 'North America'){
             if (document.getElementById('pc').checked == true){
-              var tempTitle = data.results[i].name + ` (` + data.results[i].platform + `)`;
-              if (title1.includes(tempTitle.toString())){
+              var tempTitle = `<a href='https://www.google.com/search?q=`+ data.results[i].name + ` (` + data.results[i].platform + `)' target='_blank'>` + data.results[i].name + ` (` + data.results[i].platform + `)` + `</a>`;
+              if (title1.includes(tempTitle)){
                 //Do nothing
               } else {
-                title1[i] = data.results[i].name + ` (` + data.results[i].platform + `)`;
-                date1[i] = data.results[i].release_date.substring(5,10) + '-' + data.results[i].release_date.substring(0,4);
+                title1[i] = tempTitle;
               }
             } else {
               if (data.results[i].platform != 'PC'){
                 if (data.results[i].platform != 'Macintosh'){
                   if (data.results[i].platform != 'Linux'){
-                    var tempTitle = data.results[i].name + ` (` + data.results[i].platform + `)`;
-                    if (title1.includes(tempTitle.toString())){
+                    var tempTitle = `<a href='https://www.google.com/search?q=`+ data.results[i].name + ` (` + data.results[i].platform + `)' target='_blank'>` + data.results[i].name + ` (` + data.results[i].platform + `)` + `</a>`;
+                    if (title1.includes(tempTitle)){
                       //Do nothing
                     } else {
-                      title1[i] = data.results[i].name + ` (` + data.results[i].platform + `)`;
-                      date1[i] = data.results[i].release_date.substring(5,10) + '-' + data.results[i].release_date.substring(0,4);
+                      title1[i] = tempTitle;
                     }
                   }
                 }
@@ -179,14 +174,14 @@ function getReleases(){
       for (k = 0; k < title1.length; k++){
         if (title1[k] != null){
           title[z] = title1[k];
-          date[z] = date1[k];
           z += 1;
         }
       }
 
       //Post to User
+      document.getElementById('releases').innerHTML += `<h3><u>` + data.results[0].release_date.substring(5,10) + '-' + data.results[0].release_date.substring(0,4) + `</u></h3>`;
       for (j = 0; j < title.length; j++){
-        document.getElementById('releases').innerHTML += t1 + date[j] + t2 + title[j] + t4;
+        document.getElementById('releases').innerHTML += t1 + title[j] + t4;
       }
       document.getElementById('results').innerHTML = 'Results: ' + data.number_of_total_results;
     },
