@@ -2,16 +2,14 @@ const { app, BrowserView, BrowserWindow, Menu, Tray, Notification, globalShortcu
 const https = require('https');
 const path = require('path');
 const fs = require('fs');
-//const Store = require('./store');
-//const axios = require('axios');
 
 //Information
 function title(){
-    var title = 'RampantDock Redux';
+    var title = 'Rampant Release Tracker';
     return title;
 }
 function buildNum(){
-    var build = '2020.12.29';
+    var build = '2021.04.30';
     return build;
 }
 const currentVer = app.getVersion(); //Version Variable
@@ -19,8 +17,8 @@ const changelogOptions = {
     type: 'info',
     buttons: ['Close'],
     title: 'Changelog',
-    message: 'Changes in RampantDock Redux v0.0.1',
-    detail: `- Initial Build of redesign
+    message: 'Changes in Rampant Release Tracker v1.0.0-alpha2',
+    detail: `- Updated layout so controls are on the bottom of the screen now.
 
   If you have any suggestions for the app, please reach out to me on Twitter @rampantepsilon or Discord (RampantEpsilon#7868).`
   }
@@ -158,8 +156,7 @@ function createWindow(){
         height: 900,
         title: title(),
         webPreferences: {
-            nativeWindowOpen: true,
-            webviewTag: true
+            nativeWindowOpen: true
         }
     })
 
