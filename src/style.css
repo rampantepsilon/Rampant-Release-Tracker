@@ -1,0 +1,32 @@
+  body, html{
+    height: 99%;
+    background-image: url('https://tgsnetwork.org/images/background.jpg');
+    color: white;
+  }
+  #bodyContent{
+    height: calc(100% - 40px);
+    background-color: rgba(0,0,0,0.75);
+  }
+  a {
+    color: white;
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+      width: 7px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+      background: #ffcc00;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+      background: #ff6600;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+      background: #ff3300;
+  }
