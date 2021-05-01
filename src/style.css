@@ -10,6 +10,9 @@
   a {
     color: white;
   }
+  .controls{
+    background-color: rgba(0,0,0,0.75);
+  }
 
   /* width */
   ::-webkit-scrollbar {
