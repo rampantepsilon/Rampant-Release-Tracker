@@ -1,6 +1,9 @@
 /******Global Variables******/
 //Releases
 var apiReleases, startDate;
+var title = [], platform = [];
+var titleD = [], platform = [];
+var title1 = [], platform1 = [];
 
 /*Releases*/
 //Load Releases
@@ -96,13 +99,10 @@ function rem100(){
 }
 //Get Releases
 function getReleases(){
-  var title = [], platform = [];
-  var titleD = [], platform = [];
-  var title1 = [], platform1 = [];
   var start = document.getElementById('startYear').value + '-' + document.getElementById('startMonth').value + '-' + document.getElementById('startDate').value;
   var offset = document.getElementById('offset').value;
   var t1 = `<tr><td class='releaseList'><span id='name'>`;
-  var t4 = `</span></td></tr><tr><td colspan='2'>=========================================================</td></tr>`;
+  var t4 = `</span></td></tr>`;
 
   $.ajax({
     datatype: 'json',
@@ -123,7 +123,7 @@ function getReleases(){
               if (title1.includes(tempTitle)){
                 //Do nothing
               } else {
-                title1[i] = tempTitle;
+                title1[title1.length + i] = tempTitle;
               }
             } else {
               if (data.results[i].platform != 'PC'){
@@ -133,7 +133,7 @@ function getReleases(){
                     if (title1.includes(tempTitle)){
                       //Do nothing
                     } else {
-                      title1[i] = tempTitle;
+                      title1[title1.length + i] = tempTitle;
                     }
                   }
                 }
@@ -149,7 +149,7 @@ function getReleases(){
               if (title1.includes(tempTitle)){
                 //Do nothing
               } else {
-                title1[i] = tempTitle;
+                title1[title1.length + i] = tempTitle;
               }
             } else {
               if (data.results[i].platform != 'PC'){
@@ -159,7 +159,7 @@ function getReleases(){
                     if (title1.includes(tempTitle)){
                       //Do nothing
                     } else {
-                      title1[i] = tempTitle;
+                      title1[title1.length + i] = tempTitle;
                     }
                   }
                 }
@@ -177,16 +177,32 @@ function getReleases(){
           z += 1;
         }
       }
+      title.sort();
+
+      var dateVar = data.results[0].release_date.substring(5,10) + '-' + data.results[0].release_date.substring(0,4);
+
+      let dates = document.getElementsByClassName('date');
+      for (i = 0; i < dates.length; i++){
+        if (dates[i].innerText == dateVar){
+          document.getElementById(dateVar).remove();
+        }
+      }
 
       //Post to User
-      document.getElementById('releases').innerHTML += `<h3><u>` + data.results[0].release_date.substring(5,10) + '-' + data.results[0].release_date.substring(0,4) + `</u></h3>`;
+      document.getElementById('releases').innerHTML += `<tr id='` + dateVar + `'><td><table id='` + dateVar + `-2'><tr><td class='date'><h3><u>` + dateVar + `</u></h3></td></tr>`;
       for (j = 0; j < title.length; j++){
-        document.getElementById('releases').innerHTML += t1 + title[j] + t4;
+        document.getElementById(dateVar + '-2').innerHTML += t1 + title[j] + t4;
       }
+      document.getElementById('releases').innerHTML += `</table></td></tr>`;
       document.getElementById('results').innerHTML = 'Results: ' + data.number_of_total_results;
     },
     error: function(){
       console.log("The Request Failed");
     }
   });
+}
+
+//Call for checking more than 100 entries
+function multigrab(date, ){
+
 }

@@ -17,8 +17,10 @@ const changelogOptions = {
     type: 'info',
     buttons: ['Close'],
     title: 'Changelog',
-    message: 'Changes in Rampant Release Tracker v1.0.0-alpha2',
-    detail: `- Updated layout so controls are on the bottom of the screen now.
+    message: 'Changes in Rampant Release Tracker v1.0.0-alpha3',
+    detail: `- Fixed an issue where when changing the offset it would repost the date.
+    - Sorting is now a thing. All releases will be alphabetized.
+    - Some code cleanup to fix other potential issues.
 
   If you have any suggestions for the app, please reach out to me on Twitter @rampantepsilon or Discord (RampantEpsilon#7868).`
   }
