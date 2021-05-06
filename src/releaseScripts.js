@@ -145,6 +145,8 @@ function offsetCounter(){
 function releaseScript(start, offset){
   var t1 = `<tr><td class='releaseList'><span id='name'>`;
   var t4 = `</span></td></tr>`;
+  title = [];
+  title1 = [];
 
   $.ajax({
     datatype: 'json',

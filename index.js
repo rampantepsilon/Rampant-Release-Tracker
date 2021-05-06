@@ -18,10 +18,7 @@ const changelogOptions = {
     buttons: ['Close'],
     title: 'Changelog',
     message: 'Changes in Rampant Release Tracker v1.0.0-alpha3',
-    detail: `- Fixed an issue where when changing the offset it would repost the date.
-    - Sorting is now a thing. All releases will be alphabetized.
-    - Automated Offsets for over 100 releases per day.
-    - Some code cleanup to fix other potential issues.
+    detail: `- Fixed an issue where changing days wouldn't clear the previous day's list.
 
   If you have any suggestions for the app, please reach out to me on Twitter @rampantepsilon or Discord (RampantEpsilon#7868).`
   }
